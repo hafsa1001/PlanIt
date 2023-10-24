@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="notes.css">
+
+    <style>
+        body {
+                background-color: #cbb4ef;
+            }
+          .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+          }
+    
+          .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+          }
+    
+          .tab button:hover {
+            background-color: #ddd;
+          }
+    
+          .tab button.active {
+            background-color: #ccc;
+          }
+    
+          .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+          }
+    
+        .sidebar {
+              position: fixed;
+              top: 0;
+              left: -250px;
+              width: 250px;
+              height: 100%;
+              background-color: #7FDBFF;
+              z-index: 1;
+              transition: all 0.4s ease-in-out;
+            }
+    
+            .sidebar ul {
+              list-style: none;
+              padding: 10;
+              margin: 50px 0 0 0;
+            }
+    
+            .sidebar li {
+              padding: 20px 0;
+              text-align: left;
+            }
+    
+            .hamburger {
+              position: fixed;
+              top: 20px;
+              left: 20px;
+              font-size: 24px;
+              cursor: pointer;
+              z-index: 2;
+            }
+
+            .sorting-options {
+              margin-bottom: 1rem;
+            }
+
+            .sorting-options label {
+              font-weight: bold;
+            }
+            
+        </style>
+        
+    
+</head>
+<body background="/Users/sushmitsaha/Downloads/gradient-pastel-color-background/7020304.jpg">
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div id="sidebar" class="sidebar" style="text-align: left;">
+        <ul>
+          <li><img src="home.png" alt="Calendar Logo" width="20" height="20"/><a href="index.html">Home</a></li>
+          <li><img src="calendar.png" alt="Calendar Logo" width="20" height="20"/><a href="calendar.html">Calendar</a></li>
+          <li><img src="to-do-list.png" alt="To Do Logo" width="20" height="20"/><a href="todo.html">To Do</a></li>
+          <li><img src="bell.png" alt="Reminder Logo" width="20" height="20"/><a href="reminder.html">Reminders</a></li>
+          <li><img src="limited.png" alt="Habit Tracker Logo" width="20" height="20"/><a href="habit.html">Habit Tracker</a></li>
+          <li><img src="notes.png" alt="Notes Logo" width="20" height="20"/><a href="notes.html">Notes</a></li>
+        </ul>
+      </div>
+    <header>
+        <h1>Notes</h1>
+    </header>
+    <main>
+        <section>
+            <h2 style="">Search Notes</h2>
+            <input type="text" id="search-notes" placeholder="Search notes...">
+            <button id="archived-notes-button">Archived Notes</button>
+        </section>
+        
+        <section>
+            <h2>Add New Note</h2>
+            <form id="add-note-form">
+                <label for="note-title">Title:</label>
+                <input type="text" id="note-title" required>
+                <label for="note-content">Content:</label>
+                <textarea id="note-content" rows="4" required></textarea>
+                <label for="note-color">Note Color:</label>
+                <input type="color" id="note-color" style="display:none;"> <!-- Hidden color input -->
+
+    <!-- The Choose a Note Color button -->
+                <button type="button" id="note-color-button">Choose a Note Color</button> <!-- Type changed to 'button' -->
+
+    <!-- The submit button -->
+                
+
+                <label for="note-attachment">Attachment</label>
+                <input type="file" id="note-attachment">
+                <button type="submit">Add Note</button>
+                
+            </form>
+        </section>
+        
+        <div class="sorting-options">
+          <label for="sort-notes">Sort by:</label>
+          <select id="sort-notes">
+              <option value="title">Title</option>
+              <option value="date">Date Created</option>
+              <option value="modified">Last Modified</option>
+          </select>
+      </div>
+        
+        <section id="notes-container">
+            <h2>Your Notes</h2>
+        </section>
+    </main>
+    <script src="notes.js"></script>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Note</h2>
+            <form id="edit-note-form">
+                <label for="edit-note-title">Title:</label>
+                <input type="text" id="edit-note-title" required>
+                <label for="edit-note-content">Content:</label>
+                <textarea id="edit-note-content" rows="4" required></textarea>
+                <button type="button" id="save-changes">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Archived Notes Modal -->
+    <div id="archived-notes-modal" class="modal">
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Archived Notes</h2>
+        <div id="archived-notes-container"></div>
+        </div>
+    </div>
+    
+
+
+</body>
+</html>
